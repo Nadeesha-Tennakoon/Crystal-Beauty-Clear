@@ -27,7 +27,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   images: {
-    type: String,
+    type: [String],
     required: true,
     default: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTspWi20Ji9EePuDAcO0sNJ-xSv-vfhUNoivapdyoa6bxatQ1Eypap-OA_x6G9Rq55n9NM&usqp=CAU",
