@@ -42,7 +42,7 @@ export default function AdminProductsPage() {
                 <td className="p-2">{product.productId}</td>
                 <td className="p-2">{product.name}</td>
                 <td className="p-2">{product.price}</td>
-                <td className="p-2">{product.labledprice}</td>
+                <td className="p-2">{product.labeledPrice}</td>
                 <td className="p-2">{product.stock}</td>
               </tr>
             );
