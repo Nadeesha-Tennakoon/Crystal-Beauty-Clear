@@ -1,6 +1,8 @@
+import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { GrGoogle } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -8,6 +10,27 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: (res) => {
+      setLoading(true);
+      axios
+        .post(import.meta.env.VITE_BACKEND_URL + "/api/user/google", {
+          accessToken: res.access_token,
+        })
+        .then((response) => {
+          toast.success("Login successful");
+          localStorage.setItem("token", response.data.token);
+
+          const user = response.data.user;
+          if (user.role == "admin") {
+            navigate("/admin");
+          } else {
+            navigate("/");
+          }
+          setLoading(false);
+        });
+    },
+  });
 
   function handleLogin() {
     setLoading(true);
@@ -59,9 +82,16 @@ export default function LoginPage() {
           />
           <button
             onClick={handleLogin}
-            className="w-[400px] h-[50px] bg-green-400 text-white rounded-xl cursor-pointer"
+            className="w-[400px] mt-[20px] h-[50px] bg-green-400 text-white rounded-xl cursor-pointer"
           >
             {loading ? "Loading..." : "Login"}
+          </button>
+          <button
+            className="w-[400px] mt-[20px] h-[50px] bg-green-400 text-white rounded-xl cursor-pointer flex justify-center items-center"
+            onClick={loginWithGoogle}
+          >
+            <GrGoogle className="mr-[10px]" />
+            {loading ? "Loading..." : "Login with Google"}
           </button>
           <p className="text-gray-600 text-center m-[10px]">
             Don't have an account yet?{" "}
