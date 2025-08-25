@@ -29,7 +29,7 @@ export default function CartPage() {
               className="w-full relative lg:h-[100px] flex lg:flex-row flex-col  justify-between items-center bg-white shadow-2xl  my-[5px] "
             >
               <button
-                className="absolute right-4 lg:right-[-50px] shadow cursor-pointer bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center"
+                className="absolute right-4  lg:right-[-50px] shadow cursor-pointer bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center"
                 onClick={() => {
                   removeFromCart(item.productId);
                   setCartLoaded(false);
