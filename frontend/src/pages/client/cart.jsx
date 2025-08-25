@@ -21,15 +21,15 @@ export default function CartPage() {
   }, [cartLoaded]);
   return (
     <div className="w-full h-full flex justify-center p-[40px]">
-      <div className="w-[700px]">
+      <div className="w-full lg:w-[700px]">
         {cart.map((item, index) => {
           return (
             <div
               key={index}
-              className="w-full relative h-[100px] flex justify-between items-center bg-white shadow-2xl  my-[5px] "
+              className="w-full relative lg:h-[100px] flex lg:flex-row flex-col  justify-between items-center bg-white shadow-2xl  my-[5px] "
             >
               <button
-                className="absolute right-[-50px] shadow cursor-pointer bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center"
+                className="absolute right-4 lg:right-[-50px] shadow cursor-pointer bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center"
                 onClick={() => {
                   removeFromCart(item.productId);
                   setCartLoaded(false);
@@ -39,7 +39,7 @@ export default function CartPage() {
               </button>
               <img
                 src={item.image}
-                className="h-full object-cover aspect-square"
+                className="h-[100px] lg:h-full object-cover aspect-square"
               />
               <div className="h-full max-w-[300px] w-[300px] overflow-hidden">
                 <h1 className="text-xl font-bold">{item.name}</h1>
